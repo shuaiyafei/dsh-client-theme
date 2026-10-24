@@ -1,0 +1,817 @@
+/* ============================================================
+   Unit-00 — NERV terminal skin for the Harness client
+   ============================================================ */
+
+:root {
+	--u02-art: url("__DSH_THEME_COVER__");
+}
+
+/* The key art carries the whole window; every surface above it is smoked
+   glass, so the painting stays visible instead of becoming a grey wash. */
+html {
+	background-size: auto, auto, cover;
+	background-position: center, center, 50% 44%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-color: #020305;
+	background-image:
+		radial-gradient(125% 95% at 50% 42%, rgba(3, 4, 6, 0.10) 0%, rgba(3, 4, 5, 0.44) 60%, rgba(2, 3, 4, 0.74) 100%),
+		linear-gradient(180deg, rgba(4, 5, 7, 0.08) 0%, rgba(3, 4, 6, 0.30) 52%, rgba(2, 3, 4, 0.52) 100%),
+		var(--u02-art);
+}
+
+/* The welcome screen is the cover: the painting reads at nearly full
+   strength there, and only dims once a transcript needs the contrast. */
+html:has([data-phase="hero"]) {
+	background-image:
+		radial-gradient(125% 95% at 50% 42%, rgba(3, 4, 6, 0.00) 0%, rgba(3, 4, 5, 0.18) 62%, rgba(2, 3, 4, 0.52) 100%),
+		linear-gradient(180deg, rgba(4, 5, 7, 0.00) 0%, rgba(3, 4, 6, 0.06) 52%, rgba(2, 3, 4, 0.22) 100%),
+		var(--u02-art);
+	background-size: auto, auto, cover;
+	background-position: center, center, 50% 44%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+body {
+	background: transparent !important;
+}
+
+/* Window chrome: a vermilion hairline around the whole pane. */
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 60;
+	box-shadow:
+		inset 0 0 0 1px rgba(52, 140, 255, 0.30),
+		inset 0 0 140px rgba(20, 122, 255, 0.12);
+}
+
+/* Fine scanline raster: only perceptible on large flat fills. */
+body::after {
+	content: "";
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 59;
+	opacity: 0.45;
+	background-image: repeating-linear-gradient(
+		0deg,
+		rgba(228, 240, 255, 0.020) 0 1px,
+		transparent 1px 4px
+	);
+}
+
+/* Sidebar: smoked glass, the art bleeding through. */
+[data-u02-sidebar] {
+	background: linear-gradient(
+		180deg,
+		rgba(11, 17, 26, 0.18) 0%,
+		rgba(9, 13, 19, 0.44) 22%,
+		rgba(7, 10, 14, 0.52) 100%
+	) !important;
+	-webkit-backdrop-filter: blur(26px) saturate(140%);
+	backdrop-filter: blur(26px) saturate(140%);
+	box-shadow: inset -1px 0 0 rgba(64, 147, 255, 0.24);
+}
+
+/* Content pane: barely there at the top, settling behind the transcript. */
+[data-u02-pane] {
+	background:
+		radial-gradient(50% 42% at 50% 44%, rgba(3, 4, 6, 0.30) 0%, rgba(3, 4, 6, 0) 76%),
+		linear-gradient(
+			180deg,
+			rgba(5, 7, 10, 0.00) 0%,
+			rgba(4, 6, 9, 0.16) 30%,
+			rgba(4, 6, 8, 0.28) 65%,
+			rgba(3, 4, 6, 0.38) 100%
+		) !important;
+	position: relative;
+}
+
+html:has([data-phase="hero"]) [data-u02-sidebar] {
+	background: linear-gradient(
+		180deg,
+		rgba(11, 17, 26, 0.12) 0%,
+		rgba(9, 13, 19, 0.32) 22%,
+		rgba(7, 10, 14, 0.40) 100%
+	) !important;
+}
+
+html:has([data-phase="hero"]) [data-u02-pane] {
+	background:
+		radial-gradient(52% 44% at 50% 46%, rgba(4, 6, 10, 0.30) 0%, rgba(4, 6, 10, 0.06) 62%, rgba(4, 6, 10, 0) 80%),
+		linear-gradient(
+			180deg,
+			rgba(5, 7, 10, 0.00) 0%,
+			rgba(4, 6, 9, 0.02) 30%,
+			rgba(4, 6, 8, 0.06) 65%,
+			rgba(3, 4, 6, 0.12) 100%
+		) !important;
+}
+
+/* Hazard ticks down the pane's left edge. */
+[data-u02-pane]::before {
+	content: "";
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 5px;
+	pointer-events: none;
+	z-index: 6;
+	opacity: 0.55;
+	background-image: repeating-linear-gradient(
+		180deg,
+		rgba(60, 144, 255, 0.55) 0 5px,
+		transparent 5px 13px
+	);
+	-webkit-mask: linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+	mask: linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+
+/* Header rule: the dashed hazard line under the title bar. */
+[data-slot="conversation.header"] > header {
+	background-image: repeating-linear-gradient(
+		90deg,
+		rgba(58, 143, 255, 0.85) 0 7px,
+		transparent 7px 14px
+	);
+	background-size: 100% 1px;
+	background-position: 0 100%;
+	background-repeat: no-repeat;
+}
+
+/* A warm bloom bleeding down from that rule. */
+[data-conversation-content] {
+	box-shadow: inset 0 42px 64px -46px rgba(40, 133, 255, 0.55);
+}
+
+/* ── composer: dark glass, hot rim ── */
+[data-composer-card] {
+	background-color: rgba(11, 16, 22, 0.86) !important;
+	border: 1px solid rgba(48, 138, 255, 0.55) !important;
+	box-shadow:
+		0 0 0 1px rgba(20, 122, 255, 0.10),
+		0 0 40px rgba(24, 124, 255, 0.20),
+		inset 0 0 70px rgba(30, 127, 255, 0.055) !important;
+}
+
+[data-composer-input] {
+	caret-color: #3d91ff;
+}
+
+/* Primary affordances read as the film's vermilion blocks. */
+[data-composer-card] button:is([aria-label="发送消息"], [aria-label="Send message"]) {
+	background: linear-gradient(180deg, #2a86ff 0%, #0869e8 100%) !important;
+	color: #eff6ff !important;
+	border-radius: 12px !important;
+	opacity: 1 !important;
+	box-shadow:
+		0 0 0 1px rgba(96, 165, 255, 0.55),
+		0 6px 20px rgba(18, 121, 255, 0.38) !important;
+}
+
+[data-composer-card] button:is([aria-label="发送消息"], [aria-label="Send message"]):disabled {
+	background: linear-gradient(180deg, #135ab7 0%, #093d80 100%) !important;
+	color: rgba(232, 242, 255, 0.92) !important;
+	box-shadow: 0 0 0 1px rgba(76, 154, 255, 0.32), 0 2px 10px rgba(18, 121, 255, 0.18) !important;
+}
+
+[data-slot="sidebar"] button:is([aria-label="新建会话"], [aria-label="New session"]) {
+	background: linear-gradient(180deg, rgba(44, 135, 255, 0.55) 0%, rgba(7, 83, 183, 0.62) 100%) !important;
+	border: 1px solid rgba(88, 160, 255, 0.45) !important;
+	box-shadow: 0 4px 18px rgba(18, 121, 255, 0.22), inset 0 0 20px rgba(70, 150, 255, 0.15) !important;
+}
+
+/* ── HUD gauge (bottom-right, purely decorative) ── */
+.u02-gauge {
+	position: fixed;
+	right: 22px;
+	bottom: 20px;
+	width: 108px;
+	height: 108px;
+	z-index: 55;
+	pointer-events: none;
+	display: grid;
+	place-items: center;
+	opacity: 0.92;
+}
+
+.u02-gauge-ring {
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background: conic-gradient(
+		from 214deg,
+		#4c9aff 0deg,
+		#1475f5 168deg,
+		rgba(46, 137, 255, 0.16) 168deg,
+		rgba(46, 137, 255, 0.16) 292deg,
+		transparent 292deg
+	);
+	-webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
+	mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
+	filter: drop-shadow(0 0 12px rgba(36, 131, 255, 0.5));
+}
+
+.u02-gauge-core {
+	display: flex;
+	align-items: baseline;
+	gap: 1px;
+	color: #c8e0ff;
+	font-family: "SF Mono", ui-monospace, "Menlo", monospace;
+}
+
+.u02-gauge-value {
+	font-size: 23px;
+	font-weight: 500;
+	letter-spacing: -0.02em;
+}
+
+.u02-gauge-unit {
+	font-size: 11px;
+	opacity: 0.72;
+}
+
+.u02-gauge-label {
+	position: absolute;
+	bottom: -15px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: "SF Mono", ui-monospace, "Menlo", monospace;
+	font-size: 9px;
+	letter-spacing: 0.24em;
+	color: rgba(124, 181, 255, 0.6);
+	white-space: nowrap;
+}
+
+/* ============================================================
+   Boot — the film's five-stage start-up sequence
+   ============================================================ */
+
+.u02-boot {
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	overflow: hidden;
+	color: #dfe9f5;
+	font-family: ui-monospace, "SF Mono", Menlo, monospace;
+	background-color: #020305;
+	background-image:
+		radial-gradient(72% 58% at 50% 44%, rgba(3, 4, 6, 0.52) 0%, rgba(2, 3, 4, 0.84) 74%),
+		var(--u02-art);
+	background-size: auto, cover;
+	background-position: center, 50% 44%;
+	background-repeat: no-repeat;
+	animation: u02-boot-in calc(160ms * var(--dsh-boot-ratio, 1)) ease-out both;
+}
+
+.u02-boot::before {
+	content: "";
+	position: absolute;
+	inset: 12px;
+	border: 1px dashed rgba(60, 144, 255, 0.34);
+	pointer-events: none;
+}
+
+.u02-boot::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background-image: repeating-linear-gradient(
+		0deg,
+		rgba(225, 238, 255, 0.024) 0 1px,
+		transparent 1px 4px
+	);
+}
+
+.u02-boot-sweep {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 140px;
+	transform: translateY(calc(100vh + 140px));
+	will-change: transform;
+	pointer-events: none;
+	background: linear-gradient(180deg, transparent, rgba(40, 133, 255, 0.08), transparent);
+}
+
+/* ── persistent chrome ── */
+.u02-boot-chrome {
+	position: absolute;
+	top: 20px;
+	left: 26px;
+	right: 26px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	font-size: 8px;
+	letter-spacing: 0.3em;
+	color: rgba(145, 193, 255, 0.5);
+	text-transform: uppercase;
+	animation: u02-fade calc(400ms * var(--dsh-boot-ratio, 1)) calc(80ms * var(--dsh-boot-ratio, 1)) both;
+}
+
+.u02-boot-nerv b {
+	display: block;
+	font-family: -apple-system, "Helvetica Neue", sans-serif;
+	font-size: 20px;
+	font-weight: 800;
+	letter-spacing: 0.16em;
+	color: #fff;
+	line-height: 1;
+}
+
+.u02-boot-nerv span {
+	display: block;
+	margin-top: 5px;
+	padding-bottom: 3px;
+	border-bottom: 1px solid rgba(40, 133, 255, 0.7);
+	font-size: 7px;
+	letter-spacing: 0.34em;
+}
+
+.u02-boot-clock {
+	padding-top: 4px;
+	letter-spacing: 0.22em;
+}
+
+.u02-boot-data {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+	font-size: 7px;
+	letter-spacing: 0.08em;
+	color: rgba(120, 178, 255, 0.26);
+	text-transform: uppercase;
+	animation: u02-fade calc(500ms * var(--dsh-boot-ratio, 1)) calc(260ms * var(--dsh-boot-ratio, 1)) both;
+}
+
+.u02-boot-data.left { left: 26px; text-align: left; }
+.u02-boot-data.right { right: 26px; text-align: right; }
+
+.u02-boot-foot {
+	position: absolute;
+	left: 26px;
+	right: 26px;
+	bottom: 22px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	font-size: 8px;
+	letter-spacing: 0.3em;
+	color: rgba(120, 178, 255, 0.4);
+	animation: u02-fade calc(400ms * var(--dsh-boot-ratio, 1)) calc(200ms * var(--dsh-boot-ratio, 1)) both;
+}
+
+.u02-boot-seg {
+	display: inline-flex;
+	gap: 3px;
+	margin-left: 10px;
+	vertical-align: middle;
+}
+
+.u02-boot-seg i {
+	width: 10px;
+	height: 3px;
+	background: rgba(60, 144, 255, 0.22);
+}
+
+.u02-boot-seg i.on {
+	background: #2c87ff;
+	box-shadow: 0 0 8px rgba(40, 133, 255, 0.7);
+}
+
+.u02-boot-mode {
+	color: rgba(150, 195, 255, 0.75);
+}
+
+/* ── stage machine ── */
+.u02-stage {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity calc(240ms * var(--dsh-boot-ratio, 1)) ease, visibility calc(0s * var(--dsh-boot-ratio, 1)) linear calc(240ms * var(--dsh-boot-ratio, 1));
+}
+
+.u02-stage.is-in {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity calc(200ms * var(--dsh-boot-ratio, 1)) ease, visibility calc(0s * var(--dsh-boot-ratio, 1));
+}
+
+.u02-stage::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: min(980px, 96vw);
+	height: 520px;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+	background: radial-gradient(closest-side, rgba(2, 3, 5, 0.78) 0%, rgba(2, 3, 5, 0.55) 55%, rgba(2, 3, 5, 0) 100%);
+}
+
+.u02-core {
+	position: relative;
+	z-index: 1;
+	width: min(600px, 78vw);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	transform: translateY(-2vh);
+}
+
+.u02-stage.is-in .u02-title { animation: u02-title calc(460ms * var(--dsh-boot-ratio, 1)) cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.u02-stage.is-in .u02-sub { animation: u02-fade calc(420ms * var(--dsh-boot-ratio, 1)) calc(180ms * var(--dsh-boot-ratio, 1)) both; }
+.u02-stage.is-in .u02-hint { animation: u02-fade calc(420ms * var(--dsh-boot-ratio, 1)) calc(260ms * var(--dsh-boot-ratio, 1)) both; }
+
+.u02-title {
+	margin: 0;
+	font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
+	font-size: clamp(32px, 4vw, 44px);
+	font-weight: 800;
+	letter-spacing: 0.16em;
+	color: #fff;
+	text-shadow: 0 0 34px rgba(40, 133, 255, 0.5), 0 1px 0 rgba(0, 0, 0, 0.7);
+	opacity: 0;
+}
+
+.u02-sub {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: 12px;
+	font-size: 8px;
+	letter-spacing: 0.52em;
+	color: rgba(178, 211, 255, 0.92);
+	opacity: 0;
+}
+
+.u02-sub i {
+	width: 56px;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, rgba(60, 144, 255, 0.75));
+}
+
+.u02-sub i:last-child { transform: scaleX(-1); }
+
+.u02-hint {
+	margin: 15px 0 16px;
+	font-size: 9px;
+	letter-spacing: 0.26em;
+	color: rgba(178, 211, 255, 0.52);
+	opacity: 0;
+}
+
+/* ── stage 1: LCL injection ── */
+.u02-chips {
+	display: flex;
+	gap: 8px;
+	width: 100%;
+}
+
+.u02-chips > div {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+	padding: 9px 6px;
+	border: 1px solid rgba(60, 144, 255, 0.30);
+	background: rgba(9, 15, 24, 0.55);
+	opacity: 0;
+}
+
+.u02-stage.is-in .u02-chips > div { animation: u02-fade calc(300ms * var(--dsh-boot-ratio, 1)) both; }
+.u02-stage.is-in .u02-chips > div:nth-child(1) { animation-delay: calc(320ms * var(--dsh-boot-ratio, 1)); }
+.u02-stage.is-in .u02-chips > div:nth-child(2) { animation-delay: calc(380ms * var(--dsh-boot-ratio, 1)); }
+.u02-stage.is-in .u02-chips > div:nth-child(3) { animation-delay: calc(440ms * var(--dsh-boot-ratio, 1)); }
+.u02-stage.is-in .u02-chips > div:nth-child(4) { animation-delay: calc(500ms * var(--dsh-boot-ratio, 1)); }
+
+.u02-chips span {
+	font-size: 7px;
+	letter-spacing: 0.2em;
+	color: rgba(178, 211, 255, 0.45);
+}
+
+.u02-chips b {
+	font-size: 11px;
+	font-weight: 400;
+	letter-spacing: 0.08em;
+	color: #daeaff;
+}
+
+.u02-beam {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 100%;
+	transform: translateY(100%);
+	will-change: transform;
+	pointer-events: none;
+	background:
+		linear-gradient(180deg, rgba(150, 195, 255, 0.92) 0, rgba(50, 139, 255, 0.42) 10%, rgba(11, 91, 195, 0.22) 42%, rgba(5, 56, 123, 0.08) 100%);
+	filter: blur(0.5px);
+	box-shadow: 0 -10px 60px rgba(50, 139, 255, 0.45);
+}
+
+/* ── stage 2: neural handshake ── */
+.u02-ring {
+	position: relative;
+	width: 168px;
+	height: 168px;
+	display: grid;
+	place-items: center;
+	margin-top: 6px;
+}
+
+.u02-ring-track,
+.u02-ring-fill {
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	-webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 7px));
+	mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 7px));
+}
+
+.u02-ring-track {
+	background: conic-gradient(from 135deg, rgba(90, 162, 255, 0.16) 0 270deg, transparent 270deg);
+}
+
+.u02-ring-fill {
+	background: conic-gradient(
+		from 135deg,
+		#8abdff 0deg,
+		#3c90ff calc(var(--p, 0) * 270deg),
+		transparent calc(var(--p, 0) * 270deg)
+	);
+	filter: drop-shadow(0 0 10px rgba(70, 150, 255, 0.55));
+}
+
+.u02-ring-core {
+	display: flex;
+	align-items: baseline;
+	gap: 2px;
+	color: #c4deff;
+	font-family: "SF Mono", ui-monospace, Menlo, monospace;
+}
+
+.u02-ring-num {
+	font-size: 30px;
+	font-weight: 500;
+	letter-spacing: -0.02em;
+}
+
+.u02-ring-unit {
+	font-size: 12px;
+	opacity: 0.8;
+}
+
+.u02-ring-label {
+	position: absolute;
+	bottom: 34px;
+	font-size: 7px;
+	letter-spacing: 0.3em;
+	color: rgba(178, 211, 255, 0.5);
+}
+
+/* ── stage 3: identity verification ── */
+.u02-boot-card {
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	gap: 16px;
+	padding: 14px 16px;
+	border: 1px solid rgba(60, 144, 255, 0.42);
+	background: rgba(10, 18, 29, 0.55);
+	box-shadow: 0 0 44px rgba(20, 122, 255, 0.12), inset 0 0 44px rgba(20, 122, 255, 0.05);
+	text-align: left;
+}
+
+.u02-boot-chip {
+	display: grid;
+	place-items: center;
+	flex: none;
+	width: 46px;
+	height: 56px;
+	border: 1px solid rgba(60, 144, 255, 0.5);
+	background: linear-gradient(160deg, #0d1a2b, #05080c);
+	color: #5ca3ff;
+	font-size: 19px;
+	letter-spacing: 0.04em;
+	text-shadow: 0 0 14px rgba(40, 133, 255, 0.6);
+}
+
+.u02-boot-fields {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 7px;
+	font-size: 9px;
+	letter-spacing: 0.16em;
+}
+
+.u02-boot-row {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	opacity: 0;
+}
+
+.u02-stage.is-in .u02-boot-row { animation: u02-row calc(260ms * var(--dsh-boot-ratio, 1)) both; }
+.u02-stage.is-in .u02-boot-row:nth-child(1) { animation-delay: calc(260ms * var(--dsh-boot-ratio, 1)); }
+.u02-stage.is-in .u02-boot-row:nth-child(2) { animation-delay: calc(340ms * var(--dsh-boot-ratio, 1)); }
+.u02-stage.is-in .u02-boot-row:nth-child(3) { animation-delay: calc(420ms * var(--dsh-boot-ratio, 1)); }
+.u02-stage.is-in .u02-boot-row:nth-child(4) { animation-delay: calc(500ms * var(--dsh-boot-ratio, 1)); }
+
+.u02-boot-row span { color: rgba(178, 211, 255, 0.45); }
+.u02-boot-row b { font-weight: 400; color: #ecf4ff; }
+
+.u02-meter {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-top: 18px;
+}
+
+.u02-bar {
+	position: relative;
+	flex: 1;
+	height: 6px;
+	overflow: hidden;
+	border: 1px solid rgba(60, 144, 255, 0.26);
+	background: rgba(60, 144, 255, 0.1);
+}
+
+.u02-bar-fill {
+	position: absolute;
+	inset: 0;
+	transform: scaleX(0);
+	transform-origin: left center;
+	background:
+		repeating-linear-gradient(90deg, #2c87ff 0 8px, transparent 8px 11px),
+		linear-gradient(90deg, #4c9aff, #1475f5);
+	box-shadow: 0 0 18px rgba(36, 131, 255, 0.65);
+}
+
+.u02-bar-read {
+	white-space: nowrap;
+	font-size: 9px;
+	letter-spacing: 0.2em;
+	color: rgba(154, 198, 255, 0.8);
+}
+
+.u02-bar-read b {
+	font-size: 15px;
+	font-weight: 500;
+	color: #c8e0ff;
+}
+
+/* ── stage 4: access permission ── */
+.u02-access {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 26px;
+	border: 1px solid rgba(80, 156, 255, 0.7);
+	background: linear-gradient(180deg, rgba(44, 135, 255, 0.90), rgba(10, 101, 220, 0.92));
+	color: #050f1c;
+	font-size: 10px;
+	letter-spacing: 0.28em;
+	box-shadow: 0 0 34px rgba(26, 125, 255, 0.55), inset 0 0 20px rgba(190, 218, 255, 0.25);
+	animation: u02-pulse calc(900ms * var(--dsh-boot-ratio, 1)) ease-in-out infinite;
+}
+
+.u02-access kbd {
+	font-family: inherit;
+	font-size: 8px;
+	padding: 2px 6px;
+	border: 1px solid rgba(5, 21, 41, 0.45);
+	background: rgba(5, 16, 31, 0.25);
+	color: #05152b;
+}
+
+.u02-access.is-cleared {
+	animation: u02-access-clear calc(520ms * var(--dsh-boot-ratio, 1)) ease-out both;
+}
+
+.u02-hint2 {
+	margin-top: 12px;
+	font-size: 8px;
+	letter-spacing: 0.26em;
+	color: rgba(178, 211, 255, 0.42);
+}
+
+/* ── stage 5: activation grid ── */
+.u02-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1px;
+	width: 100%;
+	border: 1px solid rgba(60, 144, 255, 0.28);
+	background: rgba(60, 144, 255, 0.18);
+}
+
+.u02-cell {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 10px 12px;
+	background: rgba(7, 12, 18, 0.86);
+	text-align: left;
+	opacity: 0;
+}
+
+.u02-stage.is-in .u02-cell { animation: u02-fade calc(260ms * var(--dsh-boot-ratio, 1)) both; }
+.u02-stage.is-in .u02-cell:nth-child(1) { animation-delay: calc(260ms * var(--dsh-boot-ratio, 1)); }
+.u02-stage.is-in .u02-cell:nth-child(2) { animation-delay: calc(320ms * var(--dsh-boot-ratio, 1)); }
+.u02-stage.is-in .u02-cell:nth-child(3) { animation-delay: calc(380ms * var(--dsh-boot-ratio, 1)); }
+.u02-stage.is-in .u02-cell:nth-child(4) { animation-delay: calc(440ms * var(--dsh-boot-ratio, 1)); }
+.u02-stage.is-in .u02-cell:nth-child(5) { animation-delay: calc(500ms * var(--dsh-boot-ratio, 1)); }
+.u02-stage.is-in .u02-cell:nth-child(6) { animation-delay: calc(560ms * var(--dsh-boot-ratio, 1)); }
+
+.u02-cell span {
+	font-size: 6.5px;
+	letter-spacing: 0.2em;
+	color: rgba(178, 211, 255, 0.4);
+}
+
+.u02-cell b {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 9px;
+	font-weight: 400;
+	letter-spacing: 0.14em;
+	color: #c9e0ff;
+}
+
+.u02-cell b i {
+	font-style: normal;
+	color: #8de0a6;
+	font-size: 9px;
+}
+
+.u02-flashbar {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, #8abdff, transparent);
+	opacity: 0;
+}
+
+.u02-stage.is-in .u02-flashbar {
+	animation: u02-flash calc(900ms * var(--dsh-boot-ratio, 1)) calc(620ms * var(--dsh-boot-ratio, 1)) ease-out both;
+}
+
+/* ── outro ── */
+/* End state is also a plain rule, not only an animation: a throttled page
+   that never advances the keyframes must still drop the overlay out of the
+   way and hand the clicks back to the client. */
+.u02-boot-out {
+	opacity: 0;
+	pointer-events: none;
+	animation: u02-out calc(360ms * var(--dsh-boot-ratio, 1)) ease-in forwards !important;
+}
+
+.u02-boot-out > * {
+	pointer-events: none;
+}
+
+@keyframes u02-boot-in { from { opacity: 0 } to { opacity: 1 } }
+@keyframes u02-title {
+	from { opacity: 0; letter-spacing: 0.32em; filter: blur(7px) }
+	to { opacity: 1; letter-spacing: 0.16em; filter: blur(0) }
+}
+@keyframes u02-fade { from { opacity: 0; transform: translateY(5px) } to { opacity: 1; transform: none } }
+@keyframes u02-row { from { opacity: 0; transform: translateX(-5px) } to { opacity: 1; transform: none } }
+@keyframes u02-out { from { opacity: 1 } to { opacity: 0; filter: blur(5px) } }
+@keyframes u02-pulse { 0%, 100% { filter: brightness(1) } 50% { filter: brightness(1.25) } }
+@keyframes u02-access-clear {
+	0% { filter: brightness(1) }
+	30% { filter: brightness(2.1); transform: scale(1.02) }
+	100% { filter: brightness(1.15); transform: scale(1) }
+}
+@keyframes u02-flash { 0% { opacity: 0 } 30% { opacity: 0.9 } 100% { opacity: 0 } }
+
+
+/* Keep decorative HUD clear of compact conversation windows. */
+@media (max-width: 900px), (max-height: 640px) {
+	.u02-gauge { display: none; }
+}

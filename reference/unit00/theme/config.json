@@ -1,0 +1,11 @@
+{
+  "id": "dsh-theme-unit00",
+  "unit": "00",
+  "displayName": "零号机",
+  "pilotName": "OPERATOR",
+  "pilotId": "0000",
+  "clearance": "LV.01",
+  "syncTarget": 68.4,
+  "bootScale": 2,
+  "bootOnce": true
+}

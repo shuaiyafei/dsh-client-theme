@@ -1,0 +1,218 @@
+<div class="u02-boot-sweep">
+</div>
+<div class="u02-boot-chrome">
+<div class="u02-boot-nerv">
+<b>NERV</b>
+<span>Special Agency NERV</span>
+</div>
+<div class="u02-boot-clock">00:00:00 · LINKED</div>
+</div>
+<div class="u02-boot-data left">
+<span>B-04 / 0x1F</span>
+<span>T-09 / 0x2C</span>
+<span>LINK E-01</span>
+<span>SYNC {{syncTarget}}</span>
+<span>PATTERN BLUE</span>
+<span>MAGI 03</span>
+<span>SIGNAL OK</span>
+</div>
+<div class="u02-boot-data right">
+<span>CLK 00:00</span>
+<span>BUS 0x2A</span>
+<span>LCL 12.7</span>
+<span>CORE {{unit}}</span>
+<span>AT-FIELD</span>
+<span>ARMED</span>
+<span>LOCKED</span>
+</div>
+<div class="u02-stage is-in" data-stage="lcl">
+<div class="u02-core">
+<h1 class="u02-title">LCL 注入</h1>
+<div class="u02-sub">
+<i>
+</i>
+<span>LCL INJECTION</span>
+<i>
+</i>
+</div>
+<p class="u02-hint">注入链接液 · 开始同步链接</p>
+<div class="u02-chips">
+<div>
+<span>压力</span>
+<b>1.00 atm</b>
+</div>
+<div>
+<span>核心温度</span>
+<b>36.4 °C</b>
+</div>
+<div>
+<span>液温</span>
+<b>22.4 °C</b>
+</div>
+<div>
+<span>PH 值</span>
+<b>5.00</b>
+</div>
+</div>
+</div>
+<div class="u02-beam">
+</div>
+</div>
+<div class="u02-stage" data-stage="neural">
+<div class="u02-core">
+<h1 class="u02-title">神经接驳</h1>
+<div class="u02-sub">
+<i>
+</i>
+<span>NEURAL HANDSHAKE</span>
+<i>
+</i>
+</div>
+<p class="u02-hint">同步率 · 正常范围</p>
+<div class="u02-ring">
+<div class="u02-ring-track">
+</div>
+<div class="u02-ring-fill">
+</div>
+<div class="u02-ring-core">
+<span class="u02-ring-num">0.0</span>
+<span class="u02-ring-unit">%</span>
+</div>
+<div class="u02-ring-label">SYNC RATIO</div>
+</div>
+</div>
+</div>
+<div class="u02-stage" data-stage="verify">
+<div class="u02-core">
+<h1 class="u02-title">身份核验</h1>
+<div class="u02-sub">
+<i>
+</i>
+<span>IDENTITY VERIFICATION</span>
+<i>
+</i>
+</div>
+<p class="u02-hint">确认驾驶员身份以同步本机</p>
+<div class="u02-boot-card">
+<div class="u02-boot-chip">{{unit}}</div>
+<div class="u02-boot-fields">
+<div class="u02-boot-row">
+<span>NAME</span>
+<b>{{pilotName}}</b>
+</div>
+<div class="u02-boot-row">
+<span>ID</span>
+<b>{{pilotId}}</b>
+</div>
+<div class="u02-boot-row">
+<span>CLEARANCE</span>
+<b>{{clearance}}</b>
+</div>
+<div class="u02-boot-row">
+<span>UNIT</span>
+<b>UNIT-{{unit}}</b>
+</div>
+</div>
+</div>
+<div class="u02-meter">
+<div class="u02-bar">
+<div class="u02-bar-fill">
+</div>
+</div>
+<div class="u02-bar-read">SYNC <b class="u02-pct">0.0</b>%</div>
+</div>
+</div>
+</div>
+<div class="u02-stage" data-stage="access">
+<div class="u02-core">
+<h1 class="u02-title">访问许可</h1>
+<div class="u02-sub">
+<i>
+</i>
+<span>ACCESS PERMISSION REQUIRED</span>
+<i>
+</i>
+</div>
+<p class="u02-hint">检测到未授权会话 · 高度权威认证</p>
+<div class="u02-access">密码载入 · CLEAR ACCESS <kbd>ENTER</kbd>
+</div>
+<p class="u02-hint2">⏎ ENTER / 空格 键 载入并继续验证</p>
+</div>
+</div>
+<div class="u02-stage" data-stage="startup">
+<div class="u02-core">
+<h1 class="u02-title">{{displayName}} 启动</h1>
+<div class="u02-sub">
+<i>
+</i>
+<span>UNIT-{{unit}} ACTIVATION</span>
+<i>
+</i>
+</div>
+<p class="u02-hint">主系统检查 · 正常范围</p>
+<div class="u02-grid">
+<div class="u02-cell">
+<span>MAGI SYSTEM</span>
+<b>NOMINAL<i>✓</i>
+</b>
+</div>
+<div class="u02-cell">
+<span>LCL INJECTION</span>
+<b>LINKED<i>✓</i>
+</b>
+</div>
+<div class="u02-cell">
+<span>NEURAL LINK</span>
+<b>{{syncTarget}}%<i>✓</i>
+</b>
+</div>
+<div class="u02-cell">
+<span>CORE TEMP</span>
+<b>NORMAL<i>✓</i>
+</b>
+</div>
+<div class="u02-cell">
+<span>SYNC MODE</span>
+<b>ACTIVE<i>✓</i>
+</b>
+</div>
+<div class="u02-cell">
+<span>HARNESS</span>
+<b>READY<i>✓</i>
+</b>
+</div>
+</div>
+</div>
+<div class="u02-flashbar">
+</div>
+</div>
+<div class="u02-boot-foot">
+<div>[ 09 / 45 ]<span class="u02-boot-seg">
+<i class="on">
+</i>
+<i class="on">
+</i>
+<i class="on">
+</i>
+<i class="on">
+</i>
+<i class="on">
+</i>
+<i>
+</i>
+<i>
+</i>
+<i>
+</i>
+<i>
+</i>
+<i>
+</i>
+<i>
+</i>
+<i>
+</i>
+</span>
+</div>
+<div class="u02-boot-mode">LCL INJECTION</div>
+</div>
